@@ -4,15 +4,24 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+// Bookshelf
+import { BookshelfComponent } from './bookshelf/bookshelf.component';
+import { BookshelfService } from './bookshelf/bookshelf.service';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BookshelfComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    BookshelfService,
+  ],
+  bootstrap: [
+    AppComponent,
+  ],
 })
 export class AppModule { }
