@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
+
+import { HttpClientModule } from '@angular/common/http';
 
 import { BookshelfComponent } from './bookshelf.component';
+import { BookshelfService } from './bookshelf.service';
 
 describe('BookshelfComponent', () => {
   let component: BookshelfComponent;
@@ -8,7 +11,15 @@ describe('BookshelfComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BookshelfComponent ],
+      imports: [
+        HttpClientModule,
+      ],
+      declarations: [
+        BookshelfComponent,
+      ],
+      providers: [
+        BookshelfService,
+      ],
     })
     .compileComponents();
   }));
@@ -19,7 +30,7 @@ describe('BookshelfComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', async(inject([BookshelfService], (service: BookshelfService) => {
     expect(component).toBeTruthy();
-  });
+  })));
 });
