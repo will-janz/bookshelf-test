@@ -33,13 +33,14 @@ describe('BookshelfService', () => {
   });
 
   it('should return an Observable<Book[]>', () => {
+    const q = 'blank';
 
-    service.getBooks().subscribe(books => {
+    service.getBooks(q).subscribe(books => {
       // Just make sure something's there
-      expect(books.length).toBeGreaterThan(1);
+      expect(books).toBeDefined();
     });
 
-    const req = httpMock.expectOne(`${service.API_URL}/books`);
+    const req = httpMock.expectOne(`${service.API_URL}?q=${q}`);
     expect(req.request.method).toBe('GET');
     req.flush({
       meaningless: 'data',
