@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { BookshelfService } from './bookshelf/bookshelf.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
   ],
   providers: [
     BookshelfService,

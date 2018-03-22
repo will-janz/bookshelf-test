@@ -1,3 +1,4 @@
-<p>
-  bookshelf works!
-</p>
+<ul>
+  <!-- <li *ngIf="books.items.length < 1">Enter a search term?</li> -->
+  <li *ngFor="let book of books.items">{{ book.volumeInfo.title }}</li>
+</ul>

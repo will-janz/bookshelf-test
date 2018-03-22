@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BookshelfService } from './bookshelf.service';
+import { Bookshelf } from './bookshelf';
+
 
 @Component({
   selector: 'bt-bookshelf',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookshelfComponent implements OnInit {
 
-  constructor() { }
+  books: Array<any> = [{ items: [] }];
+
+  constructor(private service: BookshelfService) { }
 
   ngOnInit() {
+    this.service.getBooks('harry').subscribe(books => {
+      this.books = books;
+    });
   }
 
 }
