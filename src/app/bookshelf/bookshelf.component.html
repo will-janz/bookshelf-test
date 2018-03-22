@@ -1,4 +1,25 @@
-<ul>
-  <!-- <li *ngIf="books.items.length < 1">Enter a search term?</li> -->
-  <li *ngFor="let book of books.items">{{ book.volumeInfo.title }}</li>
-</ul>
+<div class="books-table mat-elevation-z8">
+  <div class="books-header">
+    <mat-form-field>
+      <input matInput (keyup)="searchBooks.next($event.target.value)" placeholder="Search">
+    </mat-form-field>
+  </div>
+  <p *ngIf="dataSource.data.length < 1">Search for books ^</p>
+  <mat-table #table [dataSource]="dataSource" *ngIf="dataSource.data.length > 0">
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.volumeInfo.title }} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let element"> TODO </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
