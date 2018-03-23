@@ -4,12 +4,12 @@
       <input matInput (keyup)="searchBooks.next($event.target.value)" placeholder="Search">
     </mat-form-field>
   </div>
-  <p *ngIf="dataSource.data.length < 1">Search for books ^</p>
-  <mat-table #table [dataSource]="dataSource" *ngIf="dataSource.data.length > 0">
+  <p [hidden]="dataSource.data.length > 0">Search for books ^</p>
+  <mat-table #table [dataSource]="dataSource" matSort [hidden]="dataSource.data.length < 1">
 
     <!-- Title Column -->
     <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
       <mat-cell *matCellDef="let book"> {{ book.volumeInfo.title }} </mat-cell>
     </ng-container>
 
@@ -27,12 +27,12 @@
 </div>
 
 <div class="books-table mat-elevation-z8">
-  <p *ngIf="savedBooksDataSource.data.length < 1">No books saved!</p>
-  <mat-table #table [dataSource]="savedBooksDataSource" *ngIf="savedBooksDataSource.data.length > 0">
+  <p [hidden]="savedBooksDataSource.data.length > 0">No books saved!</p>
+  <mat-table #table [dataSource]="savedBooksDataSource" matSort [hidden]="savedBooksDataSource.data.length < 1">
 
     <!-- Title Column -->
     <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
       <mat-cell *matCellDef="let book"> {{ book.volumeInfo.title }} </mat-cell>
     </ng-container>
 

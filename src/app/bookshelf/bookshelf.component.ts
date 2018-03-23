@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { MatTableDataSource, MatSort } from '@angular/material';
 import { Subject, Observable } from 'rxjs/Rx';
 
 import { BookshelfService } from './bookshelf.service';
@@ -9,16 +9,19 @@ import { BookshelfService } from './bookshelf.service';
   templateUrl: './bookshelf.component.html',
   styleUrls: ['./bookshelf.component.css'],
 })
-export class BookshelfComponent {
+export class BookshelfComponent implements AfterViewInit {
+
   // Table definitions
   displayedColumns = ['title', 'actions'];
   dataSource = new MatTableDataSource();
+  @ViewChild(MatSort) sort: MatSort;
 
   // Saved table definitions
   savedBooksColumns = ['title', 'actions'];
-  savedBooksDataSource = new MatTableDataSource(); // This smells of Java...
+  savedBooksDataSource = new MatTableDataSource();
+  @ViewChild('savedMatSort') savedSort: MatSort;
 
-  // Search is subject so we can debounce it and not overload the API
+  // Search is a subject so we can debounce it and not overload the API
   public searchBooks = new Subject<string>();
 
   constructor(private service: BookshelfService) {
@@ -33,6 +36,26 @@ export class BookshelfComponent {
           this.dataSource.data = books.items;
         });
       });
+
+    // Each data source needs this override
+    this.dataSource.sortingDataAccessor = (data, sortHeaderId: string) => {
+      switch (sortHeaderId) {
+        case 'title': return data.volumeInfo.title;
+        default: return '';
+      }
+    };
+    this.savedBooksDataSource.sortingDataAccessor = (data, sortHeaderId: string) => {
+      console.log(sortHeaderId);
+      switch (sortHeaderId) {
+        case 'title': return data.volumeInfo.title;
+        default: return '';
+      }
+    };
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.savedBooksDataSource.sort = this.savedSort;
   }
 
   addBook(book) {

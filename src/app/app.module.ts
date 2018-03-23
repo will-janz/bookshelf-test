@@ -7,6 +7,7 @@ import {
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
+  MatSortModule,
   MatTableModule,
 } from '@angular/material';
 
@@ -30,6 +31,7 @@ import { BookshelfService } from './bookshelf/bookshelf.service';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSortModule,
     MatTableModule,
   ],
   providers: [
