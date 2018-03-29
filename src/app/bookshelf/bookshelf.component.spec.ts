@@ -21,7 +21,7 @@ describe('BookshelfComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
         HttpClientModule,
         MatButtonModule,
         MatCardModule,
@@ -34,7 +34,7 @@ describe('BookshelfComponent', () => {
         BookshelfComponent,
       ],
       providers: [
-        BookshelfService,
+        BookshelfService, // TODO: Mock this
       ],
     })
     .compileComponents();
