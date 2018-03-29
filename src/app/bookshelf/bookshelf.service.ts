@@ -12,6 +12,6 @@ export class BookshelfService {
   getBooks(q) {
     // Should be an array of books but "any" will do for now
     // Should use HttpParams but this is quicker
-    return this.http.get<any[]>(`${this.API_URL}?q=${q}`);
+    return this.http.get<any>(`${this.API_URL}?q=${q}`);
   }
 }

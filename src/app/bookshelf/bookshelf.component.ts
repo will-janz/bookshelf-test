@@ -4,6 +4,8 @@ import { Subject, Observable } from 'rxjs/Rx';
 
 import { BookshelfService } from './bookshelf.service';
 
+import { Volume } from '../volume/volume';
+
 @Component({
   selector: 'bt-bookshelf',
   templateUrl: './bookshelf.component.html',
@@ -38,13 +40,13 @@ export class BookshelfComponent implements AfterViewInit {
       });
 
     // Each data source needs this override
-    this.dataSource.sortingDataAccessor = (data, sortHeaderId: string) => {
+    this.dataSource.sortingDataAccessor = (data: Volume, sortHeaderId: string) => {
       switch (sortHeaderId) {
         case 'title': return data.volumeInfo.title;
         default: return '';
       }
     };
-    this.savedBooksDataSource.sortingDataAccessor = (data, sortHeaderId: string) => {
+    this.savedBooksDataSource.sortingDataAccessor = (data: Volume, sortHeaderId: string) => {
       console.log(sortHeaderId);
       switch (sortHeaderId) {
         case 'title': return data.volumeInfo.title;
