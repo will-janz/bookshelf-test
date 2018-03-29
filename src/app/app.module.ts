@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import {
   MatButtonModule,
+  MatCardModule,
   MatFormFieldModule,
   MatInputModule,
   MatSortModule,
@@ -29,6 +30,7 @@ import { BookshelfService } from './bookshelf/bookshelf.service';
     BrowserAnimationsModule,
     HttpClientModule,
     MatButtonModule,
+    MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatSortModule,

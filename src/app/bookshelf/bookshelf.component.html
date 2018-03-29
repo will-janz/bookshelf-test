@@ -1,10 +1,10 @@
-<div class="books-table mat-elevation-z8">
+<mat-card class="books-table mat-elevation-z8">
   <div class="books-header">
     <mat-form-field>
       <input matInput (keyup)="searchBooks.next($event.target.value)" placeholder="Search">
     </mat-form-field>
   </div>
-  <p [hidden]="dataSource.data.length > 0">Search for books ^</p>
+  <span [hidden]="dataSource.data.length > 0">Search for books ^</span>
   <mat-table #table [dataSource]="dataSource" matSort [hidden]="dataSource.data.length < 1">
 
     <!-- Title Column -->
@@ -24,10 +24,10 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-</div>
+</mat-card>
 
-<div class="books-table mat-elevation-z8">
-  <p [hidden]="savedBooksDataSource.data.length > 0">No books saved!</p>
+<mat-card class="books-table mat-elevation-z8">
+  <span [hidden]="savedBooksDataSource.data.length > 0">No books saved!</span>
   <mat-table #table [dataSource]="savedBooksDataSource" matSort [hidden]="savedBooksDataSource.data.length < 1">
 
     <!-- Title Column -->
@@ -47,4 +47,4 @@
     <mat-header-row *matHeaderRowDef="savedBooksColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: savedBooksColumns;"></mat-row>
   </mat-table>
-</div>
+</mat-card>
